@@ -1,0 +1,23 @@
+Instructivo aplicable a Debian (Probado en Debian 9)
+1. Ocultar versión y sistema
+  + Si nuestro sitio corre con https vamos al directorio /etc/apache2/sites-enabled
+  + Editamos el siguiente archivo: nano 000-default-le-ssl.conf
+  + Modificamos las lineas dentro de los directorios del sitio, debe quedar así
+    - <Directory /var/www/html>
+
+          Options –Indexes
+
+      </directory>
+   + Guardamos los camibos
+   + Verificamos la sintaxis de Apache con el comando  apache2ctl configtest 
+   + Y si esta todo bien recargamos el servicio con el comando systemctl reload apache2
+   
+2. Ocultar la versión de Apache, PHP y SO
+  + Ingresar al directorio etc/apache2/conf-enabled con permisos de administrador
+  + Editamos el archivo de seguridad: nano security.conf
+  + Modificamos las siguientes líneas:
+      - ServerSignature Off
+      - ServerTokens Prod
+  + Guardamos los cambios
+  + Verificamos la sintaxis de Apache con el comando  apache2ctl configtest 
+  + Y si esta todo bien reiniciamos el servicio con el comando systemctl restart apache2
